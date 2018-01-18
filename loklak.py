@@ -38,7 +38,7 @@ class Loklak(object):
     data = {}
 
     def __init__(self, baseUrl='http://api.loklak.org/'):
-        """Constructor of the Loklak class.
+        """Loklak class constructor.
 
         Args:
             baseUrl (str): Base URL for accessing the APIs (default=http://api.loklak.org/).

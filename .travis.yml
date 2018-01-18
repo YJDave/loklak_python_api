@@ -12,7 +12,7 @@ install:
 script:
   - python setup.py install
   - pyflakes setup.py
-  - nosetests --with-coverage tests
+  - nosetests tests/test.py -v --with-coverage
   - pydocstyle
 after_success:  
   - coveralls
