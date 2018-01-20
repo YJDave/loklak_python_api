@@ -48,6 +48,8 @@ Documentation of the API and Usage Examples
 To use the loklak app, first an object of the loklak type needs to be
 created. Do the following to install the ``pip`` module and add it to
 your ``requirements`` for the application.
+Currently our pip package is supported for python2.7 and lower venv versions.
+Will be supported in python3 version soon!
 
 ``pip install python-loklak-api``
 
