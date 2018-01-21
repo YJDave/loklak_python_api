@@ -97,11 +97,6 @@ class TestLoklak(unittest.TestCase):
         self.assertTrue('name' in result['user'])
         self.assertTrue('screen_name' in result['user'])
 
-    def test_susi(self):
-        """Susi test."""
-        result = self.loklak.susi('Hi I am Sudheesh')
-        self.assertTrue(len(result['answers']) >= 1)
-
     def test_search(self):
         """Test search result."""
         result = self.loklak.search('doctor who', count=18)

@@ -287,34 +287,6 @@ class Loklak(object):
                                         ' only localhost clients are granted.')
             return json.dumps(return_to_user)
 
-    def susi(self, query=None):
-        """Retrieve Susi query response.
-
-        Args:
-            query (str): Query term.
-
-        Returns:
-            json: Susi response.
-
-        """
-        susi_application = 'susi/chat.json'
-        url_to_give = self.baseUrlSusi + susi_application
-        self.query = query
-        if query:
-            params = {}
-            params['q'] = self.query
-            return_to_user = requests.get(url_to_give, params=params)
-            if return_to_user.status_code == 200:
-                return return_to_user.json()
-            else:
-                return_to_user = {}
-                return_to_user['error'] = ('Looks like there is a problem in susi replying.')
-                return json.dumps(return_to_user)
-        else:
-            return_to_user = {}
-            return_to_user['error'] = ('Please ask susi something.')
-            return json.dumps(return_to_user)
-
     def search(self, query=None, since=None, until=None, from_user=None, count=None):
         """Handle the searching.
 
