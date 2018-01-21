@@ -23,8 +23,8 @@ setup(name='python-loklak-api',
           ],
       keywords="Twitter Loklak Anonymous API",
       install_requires=[
-        "requests==2.8.1",
-        "xmljson==0.1.6"
+        "requests==2.16.0",
+        "xmljson==0.1.9"
       ],
       zip_safe=False,
       download_url='https://github.com/loklak/loklak_api_python',
