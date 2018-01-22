@@ -22,7 +22,7 @@ If you like to be anonymous when searching things, want to archive tweets or mes
 - omit authentication enforcment for API requests on the twitter plattform
 - share tweets and tweet archives with other loklak users
 - search anonymously on your own search portal
-- create your own tweet search portal or statistical evaluations, i.e.:..
+- create your own tweet search portal or statistical evaluations
 - use Kibana to analyze large amounts of tweets as source for statistical data.
 
 --------------------------------------------
@@ -54,9 +54,9 @@ To create a loklak object you can assign the `Loklak()` object to a variable.
 eg. `l = Loklak()`
 This creates an objects whose backend loklak server is `http://loklak.org/`
 
-If you want to set this API to use your own server, you can now define it by doing
-`l = Loklak('http://192.168.192.5:9000/')` for example or pass a URL to it as
-`l = Loklak('http://loklak-super-cluster.mybluemix.net/')
+If you want to set this API to use your own server, you can now define it by doing  
+`l = Loklak('http://192.168.192.5:9000/')` for example or pass a URL to it as  
+`l = Loklak('http://loklak-super-cluster.mybluemix.net/')`
 
 Note the trailing `/` is important and so is `http://`
 
@@ -197,11 +197,11 @@ Using the class method `settings()` to returns a json of the settings being used
 
 ##### Hello test - Check if the server is responding properly and is online
 
-Using the object created above `l.hello()` returns a json response of the status of the server
+Using the object created above `l.hello()` returns a json response of the server status
 
 When the server is online, the json should read
 ```json
-{'status': 'ok'}
+{"status": "ok"}
 ```
 
 ##### Peers - API To find out the loklak peers
@@ -216,15 +216,16 @@ What this can do ?
 - Fetch the details of the user along with number of their followes and following
 - Fetch only the followers / following of a particular user
 
-Query Structure: `l.user(<username>,<followers count>,<following count>)`
+Query Structure: `l.user(<username>, <followers count>, <following count>)`
 
-`<username>` is a string, eg. `'loklak_app'`
+`<username>` is a string, e.g. `'loklak_app'`  
 `<followers count>` and `<following count>` is a numeric or a string or `None`
 
-eg. `l.user('loklak_app')`
-eg. `l.user('loklak_app',1000)` - 1000 followers of `loklak_app`
-eg. `l.user('loklak_app',1000,1000)` - 1000 followers and following of `loklak_app`
-eg. `l.user('loklak_app',None,1000)` - 1000 following of `loklak_app`
+e.g.  
+1. `l.user('loklak_app')`  
+2. `l.user('loklak_app', 1000)` - 1000 followers of `loklak_app`  
+3. `l.user('loklak_app', 1000, 1000)` - 1000 followers and following of `loklak_app`  
+4. `l.user('loklak_app', None, 1000)` - 1000 following of `loklak_app`
 
 ##### Accounts API
 LOCALHOST ONLY, Loklak server running on port `localhost:9000`
@@ -234,15 +235,15 @@ To query the user account details of the data within the loklak server, use
 
 To update the user details within the server, package a `json` object with the following parameters and other parameters which needs to be pushed to the server and use the `action=update` where `action` is the 2nd parameter of the `account()` api
 
-`l.account('name','update','{ json object }')`
+`l.account('name', 'update', '{ json object }')`
 
 ##### Search API
 
 Public search API for the scraped tweets from Twitter.
 
-Query structure: `search('querycontent','since date','until date', 'from a specific user', '# of tweets')`
+Query structure: `search('querycontent', 'since date', 'until date', 'from a specific user', '# of tweets')`
 
-eg. l.search('doctor who')
+e.g. `l.search('doctor who')`
 
 A search result in json looks as follows.
 ```json
@@ -297,7 +298,7 @@ A search result in json looks as follows.
 
 Mentioning the Since and Until dates
 
-eg. `l.search('sudheesh001', '2015-01-10', '2015-01-21')`
+e.g. `l.search('sudheesh001', '2015-01-10', '2015-01-21')`
 
 Which results in a json as follows
 ```json
@@ -367,11 +368,11 @@ Valid parameters for `since` and `until` can also be `None` or any `YMD` date fo
 
 The `from a specific user` parameter makes sure that the results obtained for the given query are only from a specific user.
 
-`l.search('doctor who', '2015-01-10', '2015-01-21','0rb1t3r')`
+e.g. `l.search('doctor who', '2015-01-10', '2015-01-21','0rb1t3r')`
 
 The `# of tweets` parameter is how many tweets will be returned.
 
-`l.search('avengers', None, None, 'Iron_Man', 3)`
+e.g. `l.search('avengers', None, None, 'Iron_Man', 3)`
 
 ##### Aggregations API
 
@@ -379,5 +380,4 @@ The `# of tweets` parameter is how many tweets will be returned.
 
 Loklak allows you to fetch required information about a country or city.
 
-eg. `l.geocode(['Barcelona'])`
-eg. `l.geocode(['place1','place2'])`
+e.g. `l.geocode(['Barcelona'])`, `l.geocode(['place1', 'place2'])`
