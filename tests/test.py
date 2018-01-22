@@ -29,6 +29,9 @@ class TestLoklak(unittest.TestCase):
                 msg='{} not found in index'.format(prop)
             )
 
+        result = self.loklak.status("nonexisturl")
+        self.assertEqual(result, "{}")
+
     def test_hello(self):
         """Test hello instance."""
         result = self.loklak.hello()
