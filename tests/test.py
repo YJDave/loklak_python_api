@@ -34,6 +34,11 @@ class TestLoklak(unittest.TestCase):
         result = self.loklak.hello()
         self.assertEqual(result['status'], u'ok')
 
+    def test_getBaseUrl(self):
+        """Test base url."""
+        result = self.loklak.getBaseUrl()
+        self.assertEqual(result, self.baseUrl)
+
     def test_geocode(self):
         """Test geological features."""
         result = self.loklak.geocode()
