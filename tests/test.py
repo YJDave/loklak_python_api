@@ -100,10 +100,15 @@ class TestLoklak(unittest.TestCase):
     def test_user(self):
         """Test user."""
         result = self.loklak.user('dhruvRamani98')
-        self.assertTrue('error' in self.loklak.user())
         self.assertTrue('user' in result)
         self.assertTrue('name' in result['user'])
         self.assertTrue('screen_name' in result['user'])
+        result = self.loklak.user("fossasia", 1500, 330)
+        self.assertTrue('user' in result)
+        self.assertTrue('name' in result['user'])
+        result = self.loklak.user()
+        self.assertTrue('error' in self.loklak.user())
+        self.assertEqual(result, '{"error": "No user name given to query. Please check and try again"}')
 
     def test_search(self):
         """Test search result."""
