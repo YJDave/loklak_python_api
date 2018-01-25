@@ -120,6 +120,12 @@ class TestLoklak(unittest.TestCase):
                          int(result['search_metadata']['maximumRecords']))
         self.assertEqual(int(result['search_metadata']['maximumRecords']), 18)
 
+        result = self.loklak.search('FOSSASIA', since='2000-01-01', until='2017-12-31_12:24', from_user='fossasia', count=20)
+        self.assertTrue('statuses' in result)
+
+        result = self.loklak.search()
+        self.assertEqual(result, '{"error": "No Query string has been given to query for an account"}')
+
     def test_aggregations(self):
         """Test aggregations."""
         result = self.loklak.aggregations('fossasia', '2017-01-10',
