@@ -420,7 +420,7 @@ class Loklak(object):
                 return json.dumps(return_to_user)
         else:
             return_to_user = {}
-            return_to_user['error'] = ('No Query string has been given to run'
+            return_to_user['error'] = ('No Query string has been given to run '
                                         'query for aggregations')
             return json.dumps(return_to_user)
 

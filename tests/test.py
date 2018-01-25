@@ -127,6 +127,9 @@ class TestLoklak(unittest.TestCase):
         data = result.json()
         self.assertEqual(result.status_code, 200)
         self.assertTrue('aggregations' in data)
+
+        result = self.loklak.aggregations()
+        self.assertEqual(result, '{"error": "No Query string has been given to run query for aggregations"}')
     #     self.assertTrue('hashtags' in data['aggregations'])
     #     self.assertTrue('mentions' in data['aggregations'])
 
