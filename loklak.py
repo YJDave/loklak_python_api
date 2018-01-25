@@ -80,11 +80,11 @@ class Loklak(object):
 
     def csvToJson(self, csvData = None, fieldnamesList = None):
         """Convert CSV to JSON as the service."""
-        jsonData = ''
+        jsonData = '[]'
         if csvData:
             data = csv.DictReader( csvData, fieldnames = fieldnamesList)
             jsonData = json.dumps( [ row for row in data ] )
-            return out
+        return jsonData
 
     def hello(self):
         """Retrieve a json response about the basic status of the server."""
