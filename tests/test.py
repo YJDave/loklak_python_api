@@ -29,10 +29,18 @@ class TestLoklak(unittest.TestCase):
                 msg='{} not found in index'.format(prop)
             )
 
+        result = self.loklak.status("nonexisturl")
+        self.assertEqual(result, "{}")
+
     def test_hello(self):
         """Test hello instance."""
         result = self.loklak.hello()
         self.assertEqual(result['status'], u'ok')
+
+    def test_getBaseUrl(self):
+        """Test base url."""
+        result = self.loklak.getBaseUrl()
+        self.assertEqual(result, self.baseUrl)
 
     def test_geocode(self):
         """Test geological features."""
@@ -92,10 +100,15 @@ class TestLoklak(unittest.TestCase):
     def test_user(self):
         """Test user."""
         result = self.loklak.user('dhruvRamani98')
-        self.assertTrue('error' in self.loklak.user())
         self.assertTrue('user' in result)
         self.assertTrue('name' in result['user'])
         self.assertTrue('screen_name' in result['user'])
+        result = self.loklak.user("fossasia", 1500, 330)
+        self.assertTrue('user' in result)
+        self.assertTrue('name' in result['user'])
+        result = self.loklak.user()
+        self.assertTrue('error' in self.loklak.user())
+        self.assertEqual(result, '{"error": "No user name given to query. Please check and try again"}')
 
     def test_search(self):
         """Test search result."""
@@ -107,6 +120,12 @@ class TestLoklak(unittest.TestCase):
                          int(result['search_metadata']['maximumRecords']))
         self.assertEqual(int(result['search_metadata']['maximumRecords']), 18)
 
+        result = self.loklak.search('FOSSASIA', since='2000-01-01', until='2017-12-31_12:24', from_user='fossasia', count=20)
+        self.assertTrue('statuses' in result)
+
+        result = self.loklak.search()
+        self.assertEqual(result, '{"error": "No Query string has been given to query for an account"}')
+
     def test_aggregations(self):
         """Test aggregations."""
         result = self.loklak.aggregations('fossasia', '2017-01-10',
@@ -114,6 +133,9 @@ class TestLoklak(unittest.TestCase):
         data = result.json()
         self.assertEqual(result.status_code, 200)
         self.assertTrue('aggregations' in data)
+
+        result = self.loklak.aggregations()
+        self.assertEqual(result, '{"error": "No Query string has been given to run query for aggregations"}')
     #     self.assertTrue('hashtags' in data['aggregations'])
     #     self.assertTrue('mentions' in data['aggregations'])
 

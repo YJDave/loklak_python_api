@@ -60,10 +60,9 @@ class Loklak(object):
         """Return the string value of baseUrl."""
         return self.baseUrl
 
-    def status(self):
+    def status(self, status_application='api/status.json'):
         """Retrieve a json response about the status of the server."""
-        status_application = 'api/status.json'
-        url_to_give = self.baseUrl+status_application
+        url_to_give = self.baseUrl + status_application
         return_to_user = requests.get(url_to_give)
         if return_to_user.status_code == 200:
             return return_to_user.json()
@@ -421,7 +420,7 @@ class Loklak(object):
                 return json.dumps(return_to_user)
         else:
             return_to_user = {}
-            return_to_user['error'] = ('No Query string has been given to run'
+            return_to_user['error'] = ('No Query string has been given to run '
                                         'query for aggregations')
             return json.dumps(return_to_user)
 
