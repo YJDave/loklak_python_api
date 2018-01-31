@@ -37,10 +37,15 @@ class TestLoklak(unittest.TestCase):
         result = self.loklak.hello()
         self.assertEqual(result['status'], u'ok')
 
-    def test_getBaseUrl(self):
-        """Test base url."""
-        result = self.loklak.getBaseUrl()
-        self.assertEqual(result, self.baseUrl)
+    def test_xmlToJson(self):
+        """Test xmlToJson method."""
+        xmlData = "<note>\n<to>Coders</to>\n<from>FOSSASIA</from>\n<heading>FOSSASIA</heading> \
+                   \n<body>Let's code!!</body>\n</note>"
+        expectedJSONData = '{"note": {"to": {"$": "Coders"}, "from": {"$": "FOSSASIA"}, "heading": {"$": "FOSSASIA"}, "body": {"$": "Let\'s code!!"}}}'
+        result = self.loklak.xmlToJson(xmlData)
+        self.assertEqual(result, expectedJSONData)
+        result = self.loklak.xmlToJson()
+        self.assertEqual(result, "[]")
 
     def test_geocode(self):
         """Test geological features."""

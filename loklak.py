@@ -8,6 +8,7 @@ import json
 import re
 import requests
 from xmljson import badgerfish as bf
+import lxml.etree as et
 from json import dumps
 import csv
 
@@ -72,9 +73,9 @@ class Loklak(object):
 
     def xmlToJson(self, xmlData = None):
         """Convert XML to JSON as the service."""
-        jsonData = ''
+        jsonData = '[]'
         if xmlData:
-            jsonData = dumps(bf.data(fromstring(xmlData)))
+            jsonData = dumps(bf.data(et.fromstring(xmlData)))
         return jsonData
 
     def csvToJson(self, csvData = None, fieldnamesList = None):
