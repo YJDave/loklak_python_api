@@ -97,18 +97,18 @@ class TestLoklak(unittest.TestCase):
         result = self.loklak.push(data)
         self.assertTrue('status' in result)
 
-    # def test_user(self):
-    #     """Test user."""
-    #     result = self.loklak.user('dhruvRamani98')
-    #     self.assertTrue('user' in result)
-    #     self.assertTrue('name' in result['user'])
-    #     self.assertTrue('screen_name' in result['user'])
-    #     result = self.loklak.user("fossasia", 1500, 330)
-    #     self.assertTrue('user' in result)
-    #     self.assertTrue('name' in result['user'])
-    #     result = self.loklak.user()
-    #     self.assertTrue('error' in self.loklak.user())
-    #     self.assertEqual(result, '{"error": "No user name given to query. Please check and try again"}')
+    def test_user(self):
+        """Test user."""
+        result = self.loklak.user('dhruvRamani98')
+        self.assertTrue('user' in result)
+        self.assertTrue('name' in result['user'])
+        self.assertTrue('screen_name' in result['user'])
+        result = self.loklak.user("fossasia", 1500, 330)
+        self.assertTrue('user' in result)
+        self.assertTrue('name' in result['user'])
+        result = self.loklak.user()
+        self.assertTrue('error' in self.loklak.user())
+        self.assertEqual(result, '{"error": "No user name given to query. Please check and try again"}')
 
     def test_search(self):
         """Test search result."""
@@ -121,6 +121,9 @@ class TestLoklak(unittest.TestCase):
         self.assertEqual(int(result['search_metadata']['maximumRecords']), 18)
 
         result = self.loklak.search('FOSSASIA', since='2000-01-01', until='2017-12-31_12:24', from_user='fossasia', count=20)
+        self.assertTrue('statuses' in result)
+
+        result = self.loklak.search('InvalidUser', since='2000-01-01', until='2017-12-31_12:24', from_user='fossasia', count=20)
         self.assertTrue('statuses' in result)
 
         result = self.loklak.search()
